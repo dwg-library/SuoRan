@@ -1,0 +1,12 @@
+.aside{
+  width: 15%;
+  height: 100%;
+  border-right: 2px solid rgb(78, 146, 247);
+}
+h1{
+  text-align: center;
+}
+.form{
+  width: 80%;
+  float: right;
+}

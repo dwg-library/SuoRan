@@ -1,0 +1,29 @@
+.img{
+    width: 60px;
+    height: 60px;
+}
+.data{
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+    position: relative;
+  }
+.title{
+    float: left;
+}
+.act{
+    height: 50px;
+    position: absolute;
+    right:0;
+}
+
+.btn{
+    position: absolute;
+    right:0;
+}
+
+.sear{
+    width: 200px;
+    position: absolute;
+    right: 100px;
+}

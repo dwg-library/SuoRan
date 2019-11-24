@@ -1,0 +1,37 @@
+html,body{
+    width: 100vw;
+    height: 100vh;
+  }
+.box{
+    width: 100vw;
+    height: 100vh;
+    background: url(../assets/bg.jpg) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+.wrap{
+    width: 330px;
+    height: 350px;
+    margin: 118.5px  auto;
+    background: rgba(0,0,0,.4);
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 30px;
+}
+.wrap h1{
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 2px solid rgb(41, 139, 230);
+    padding-bottom: 5px;
+}
+.loginform {
+    max-width: 300px;
+   
+  }
+.loginformforgot {
+    float: right;
+  }
+.loginformbutton {
+    width: 100%;
+  }
