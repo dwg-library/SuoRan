@@ -16,16 +16,16 @@ export const GETHEAD=(url,params,token)=>{
       params:params,
       headers:{authorization:'Bearer ' +token}
     })
-    }
+}
 
-export const POSTHPRO=(url,params,token)=>{
+export const GETURL=(url,params,token)=>{
   return axios({
-    method:'POST',
+    method:'get',
     url:`${baseUrl}${url}`,
     params:params,
     headers:{authorization:'Bearer ' +token}
   })
-  }
+}
 
 export const DELETE=(url,params,token)=>{
     return axios({
@@ -35,7 +35,34 @@ export const DELETE=(url,params,token)=>{
       headers:{authorization:'Bearer ' +token}
     })
   }
+  // 删除用户
+  export const ACCDELETE=(url,token)=>{
+    return axios({
+      method:'delete',
+      url:`${baseUrl}${url}`,
+      headers:{authorization:'Bearer ' +token}
+    })
+  }
 
+// 添加用户
+  export const ADD=(url,params,token)=>{
+    return axios({
+      method:'post',
+      url:`${baseUrl}${url}`,
+      params:params,
+      headers:{authorization:'Bearer ' +token}
+    })
+  }
+
+// 获取订单列表
+export const GETHEAD1=(url,params,token)=>{
+  return axios({
+    method:'get',
+    url:`${baseUrl}${url}`,
+    params:params,
+    headers:{authorization:'Bearer ' +token}
+  })
+  }
 
 export const XIUGAI=(url,token)=>{
   return axios({
@@ -44,9 +71,6 @@ export const XIUGAI=(url,token)=>{
     headers:{authorization:'Bearer ' +token}
   })
 }
-
-
-
 
 
   export const POST_Token=(url,params,token)=>{

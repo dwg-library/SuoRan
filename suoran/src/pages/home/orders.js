@@ -18,7 +18,7 @@ class App extends React.Component {
         // console.log(data)
         // console.log(data.data.orders)
         var list=data.data.orders
-        console.log(list)
+        // console.log(list)
         this.setState({
           list:list,
         })
@@ -86,7 +86,7 @@ class App extends React.Component {
             </Col>
           </div>
         </div>
-      <Table columns={columns} dataSource={data} bordered pagination={{ pageSize: 5 }} />
+      <Table columns={columns} dataSource={data} bordered pagination={{ pageSize: 7}} />
       </div>
     )
   }
