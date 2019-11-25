@@ -29,9 +29,29 @@ const routes = [
     component: require('../home/_layout.js').default,
     routes: [
       {
+        path: '/home/address  2',
+        exact: true,
+        component: require('../home/address  2.js').default,
+      },
+      {
+        path: '/home/address 11',
+        exact: true,
+        component: require('../home/address 11.js').default,
+      },
+      {
         path: '/home/address',
         exact: true,
         component: require('../home/address.js').default,
+      },
+      {
+        path: '/home/address1',
+        exact: true,
+        component: require('../home/address1.js').default,
+      },
+      {
+        path: '/home/charts',
+        exact: true,
+        component: require('../home/charts.js').default,
       },
       {
         path: '/home/feedback',
@@ -44,9 +64,24 @@ const routes = [
         component: require('../home/home.js').default,
       },
       {
+        path: '/home/info copy 2',
+        exact: true,
+        component: require('../home/info copy 2.js').default,
+      },
+      {
+        path: '/home/info copy',
+        exact: true,
+        component: require('../home/info copy.js').default,
+      },
+      {
         path: '/home/info',
         exact: true,
         component: require('../home/info.js').default,
+      },
+      {
+        path: '/home/new copy',
+        exact: true,
+        component: require('../home/new copy.js').default,
       },
       {
         path: '/home/new',
@@ -54,9 +89,19 @@ const routes = [
         component: require('../home/new.js').default,
       },
       {
+        path: '/home/record copy',
+        exact: true,
+        component: require('../home/record copy.js').default,
+      },
+      {
         path: '/home/record',
         exact: true,
         component: require('../home/record.js').default,
+      },
+      {
+        path: '/home/security',
+        exact: true,
+        component: require('../home/security.js').default,
       },
       {
         component: () =>
