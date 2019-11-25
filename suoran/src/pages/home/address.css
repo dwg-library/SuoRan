@@ -1,13 +1,8 @@
 
 .normal {
-  width: 50%;
-  margin: 1% 20%;
+  background: #F28579;
 }
 
-.btn{
-  margin: 15px;
-
-}
 
 .editable-row .ant-form-explain {
   position: absolute;

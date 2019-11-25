@@ -1,12 +1,10 @@
 
 .normal {
-  width: 50%;
-  margin: 1% 20%;
+  background: #8F79F2;
 }
-
-.btn{
-  margin: 15px;
-
+.img{
+  width: 60px;
+  height: 60px;
 }
 
 .editable-row .ant-form-explain {
@@ -14,3 +12,6 @@
   font-size: 12px;
   margin-top: -4px;
 }
+
+
+

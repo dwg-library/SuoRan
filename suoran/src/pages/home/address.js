@@ -1,10 +1,8 @@
 
-import Link from 'umi/link';
-import styles from './classify.css'
-import { Table, Input, InputNumber, Popconfirm, Form, Button, Icon, Col, } from 'antd';
-import * as api from '../../utils/class';
-
-const { Search } = Input;
+import styles from './record.css'
+import { Table, Input, InputNumber, Popconfirm, Form, Button, Modal } from 'antd';
+import * as api from '../utils/getpro';
+import UserForm from './new'
 
 const data = [];
 for (let i = 0; i < 1; i++) {
@@ -119,22 +117,21 @@ class EditableTable extends React.Component {
 
 
   componentDidMount() {
-    api.getList(
-      { per: 50,},
+    api.getPro(
+      { per: 50, page: 7 },
       localStorage.getItem("token"))
       .then((data) => {
-        // console.log(data.data.categories)
-        var list = data.data.categories
-        for (var i = 0; i < data.data.categories.length; i++) {
+        console.log(data.data.products)
+        var list = data.data.products
+        for (var i = 0; i < data.data.products.length; i++) {
           list[i].key = i + 1
-          list[i].img = data.data.categories[i].coverImg;
-          list[i].name = data.data.categories[i].name;
-          list[i].desc = data.data.categories[i].descriptions;
-          list[i].create = data.data.categories[i].createdAt;
-          list[i].update = data.data.categories[i].updatedAt;
-          list[i].id = data.data.categories[i]._id;
+          list[i].tou = data.data.products[i].coverImg;
+          list[i].nick = data.data.products[i].name;
+          list[i].age = data.data.products[i].descriptions;
+          list[i].name = data.data.products[i].price;
+          list[i].id = data.data.products[i]._id;
         }
-        // console.log(list)
+        console.log(list)
         this.setState({
           list: list,
         })
@@ -160,17 +157,15 @@ class EditableTable extends React.Component {
   
   handleDelete = key => {
     const dataSource = [...this.state.list];
-    console.log(dataSource)
     this.setState({ list: dataSource.filter(item => item.key !== key) });
   };
 
   delete(text) {
     console.log(text)
-    api.delpro(
-        text._id,
+    api.delpro(text._id,
         localStorage.getItem("token"))
       .then((data)=>{
-        // console.log(data.data)
+        console.log(data.data)
       })     
   }
 
@@ -202,38 +197,39 @@ class EditableTable extends React.Component {
 
     this.columns = [
       {
-        title: '类型图',
-        dataIndex: 'img',
+        title: '图片',
+        dataIndex: 'tou',
         editable: true,
         render: img => <img src={img} className={styles.img} />,
-        width: 90,
+        width: '10%',
       },
       {
-        title: '类型名称',
-        dataIndex: 'name',
+        title: '名称',
+        dataIndex: 'nick',
         render: text => <a>{text}</a>,
+        width: '15%',
         editable: true,
-        ellipsis: true,
-        width: 90,
       },
       {
-        title: '类型描述',
-        dataIndex: 'desc',
+        title: '价格',
+        dataIndex: 'name',
+        render: text => <a>{'￥' + text}</a>,
+        width: '10%',
         editable: true,
-        ellipsis: true,
       },
       {
-        title: '创建时间',
-        dataIndex: 'create',
+        title: '描述',
+        dataIndex: 'age',
+        width: '25%',
         editable: true,
-        ellipsis: true,
       },
       {
-        title: '更新时间',
-        dataIndex: 'update',
+        title: 'ID',
+        dataIndex: 'id',
+        width: '25%',
         editable: true,
-        ellipsis: true,
       },
+
       {
         title: '操作',
         dataIndex: 'operation',
@@ -261,8 +257,7 @@ class EditableTable extends React.Component {
                 修改
             </Button>
             );
-        },
-        width:100,
+        }
       },
       {
         key:2,
@@ -274,7 +269,6 @@ class EditableTable extends React.Component {
            <Button type="danger" onClick={()=>this.delete(text,record)}>删除</Button>
           </Popconfirm>
         ) : null,
-        width:100,
       },
       
 
@@ -299,20 +293,6 @@ class EditableTable extends React.Component {
 
     return (
       <div>
-        <div className={styles.data}>
-          <h2 className={styles.title}>商品分类</h2>
-          <div className={styles.act}>
-            <Link to='./newpro' className={styles.btn}><Button type='primary'> <Icon type="plus" />新建</Button></Link>
-            <Col span={8}>
-              <Search placeholder="搜索商品" className={styles.sear}
-                onSearch={
-                  value => console.log(value)
-                }
-                enterButton 
-              />
-            </Col>
-          </div>
-        </div>
       <EditableContext.Provider value={this.props.form}>
         <Table
           components={components}
@@ -321,11 +301,11 @@ class EditableTable extends React.Component {
           columns={columns}
           rowClassName="editable-row"
           pagination={{
-            pageSize: 7
+            pageSize: 4
           }}
         />
       </EditableContext.Provider>
-      {/* <Modal
+      <Modal
           title="修改地址"
           visible={isShow}
           onOk={() => this.setState({ isShow: false })}
@@ -335,7 +315,7 @@ class EditableTable extends React.Component {
        <UserForm
             setForm={form => this.form = form}
           />
-       </Modal> */}
+       </Modal>
       </div>
     );
   }

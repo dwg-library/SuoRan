@@ -1,10 +1,7 @@
-
-import Link from 'umi/link';
-import styles from './classify.css'
-import { Table, Input, InputNumber, Popconfirm, Form, Button, Icon, Col, } from 'antd';
-import * as api from '../../utils/class';
-
-const { Search } = Input;
+import styles from './record.css'
+import { Table, Input, InputNumber, Popconfirm, Form,Button ,Modal} from 'antd';
+import * as api from '../utils/getpro';
+import UserForm from './new'
 
 const data = [];
 for (let i = 0; i < 1; i++) {
@@ -15,13 +12,13 @@ for (let i = 0; i < 1; i++) {
 const EditableContext = React.createContext();
 
 class EditableCell extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props)
-    this.state = {
-      dataSource: [],
-      isShow: false,
-    }
+     this.state = { 
+      dataSource:[],
+      isShow:false,
   }
+}
 
   getInput = () => {
     if (this.props.inputType === 'number') {
@@ -39,7 +36,6 @@ class EditableCell extends React.Component {
       record,
       index,
       children,
-      message,
       ...restProps
     } = this.props;
     return (
@@ -57,8 +53,8 @@ class EditableCell extends React.Component {
             })(this.getInput())}
           </Form.Item>
         ) : (
-            children
-          )}
+          children
+        )}
       </td>
     );
   };
@@ -68,24 +64,20 @@ class EditableCell extends React.Component {
   }
 }
 
-
 class EditableTable extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { 
       data,
       editingKey: '',
       list: null,
-    };
-
+   };
+    
   }
-
 
   isEditing = record => record.key === this.state.editingKey;
 
-  cancel = (id) => {
-    console.log(id)
+  cancel = () => {
     this.setState({ editingKey: '' });
   };
 
@@ -94,9 +86,8 @@ class EditableTable extends React.Component {
       if (error) {
         return;
       }
-      const { data } = this.state;
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
+      const newData = [...this.state.data];
+      const index = newData.findIndex(item => key === item.key);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -111,89 +102,48 @@ class EditableTable extends React.Component {
     });
   }
 
-
   edit(key) {
-    console.log(key)
     this.setState({ editingKey: key });
   }
 
-
-  componentDidMount() {
-    api.getList(
-      { per: 50,},
-      localStorage.getItem("token"))
-      .then((data) => {
-        // console.log(data.data.categories)
-        var list = data.data.categories
-        for (var i = 0; i < data.data.categories.length; i++) {
-          list[i].key = i + 1
-          list[i].img = data.data.categories[i].coverImg;
-          list[i].name = data.data.categories[i].name;
-          list[i].desc = data.data.categories[i].descriptions;
-          list[i].create = data.data.categories[i].createdAt;
-          list[i].update = data.data.categories[i].updatedAt;
-          list[i].id = data.data.categories[i]._id;
-        }
-        // console.log(list)
-        this.setState({
-          list: list,
-        })
-      })
-
-  }
-
-  isEditing = (record) => {
-    const { editingKey } = this.state;
-    return record.key === editingKey;
-  };
-
-  cancel = (key) => {
-    if (key.length > 6) {
-      const { data } = this.state;
-      const newData = data;
-      newData.splice(data.length - 1, 1);
-      this.setState({ data: newData, editingKey: key });
-    }
-    this.setState({ editingKey: '' });
-  };
-
-  
   handleDelete = key => {
     const dataSource = [...this.state.list];
-    console.log(dataSource)
     this.setState({ list: dataSource.filter(item => item.key !== key) });
   };
 
   delete(text) {
     console.log(text)
-    api.delpro(
-        text._id,
+    api.delpro(text._id,
         localStorage.getItem("token"))
       .then((data)=>{
-        // console.log(data.data)
+        console.log(data.data)
       })     
   }
-
-  handleSubmit = e => {
-    e.preventDefault();
-    var _this = this
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-      _this.setState({
-        userName: values.name,
-        password: values.pwd,
-        nickName: values.nick
-      })
-      
-    });
+Order
+  componentDidMount(){
+    api.getOrder(
+      {per:30,page:5},
+      localStorage.getItem("token"))
+      .then((data) => {
+        console.log(data.data.products)
+        // var list=data.data.products
+        // for(let i=0;i<data.data.products.length;i++){
+        //     list[i].key=i+1
+        //     list[i].tou=data.data.products[i].coverImg;
+        //     list[i].nick=data.data.products[i].name;
+        //     list[i].age=data.data.products[i].descriptions;
+        //     list[i].name=data.data.products[i].price;
+        //     list[i].id=data.data.products[i]._id;
+        // }
+        // console.log(list)
+        // this.setState({
+        //   list:list,        
+        // })     
+    })
   }
-
 
 
   render() {
-    const { users, isShow } = this.state
     const components = {
       body: {
         cell: EditableCell,
@@ -202,38 +152,40 @@ class EditableTable extends React.Component {
 
     this.columns = [
       {
-        title: '类型图',
-        dataIndex: 'img',
+        title: '图片',
+        dataIndex: 'tou',      
         editable: true,
-        render: img => <img src={img} className={styles.img} />,
-        width: 90,
+        render: img => <img src={img} className={styles.img}/>,
+        width: '10%',
       },
       {
-        title: '类型名称',
+        title: '名称',
+        dataIndex: 'nick',
+        render: text => <span className={styles.desc}>{text}</span>,
+        width: '30%',
+        editable: true,
+      },
+      {
+        title: '价格',
         dataIndex: 'name',
-        render: text => <a>{text}</a>,
+        render: text => <a>{'￥'+text}</a>,
+        width: '10%',
         editable: true,
-        ellipsis: true,
-        width: 90,
       },
       {
-        title: '类型描述',
-        dataIndex: 'desc',
+        title: '描述',
+        dataIndex: 'age',
+        width: '25%',
         editable: true,
-        ellipsis: true,
+        render: text => <p className={styles.desc}>{text}</p>,
       },
       {
-        title: '创建时间',
-        dataIndex: 'create',
+        title: 'ID',
+        dataIndex: 'id',
+        width: '15%',
         editable: true,
-        ellipsis: true,
       },
-      {
-        title: '更新时间',
-        dataIndex: 'update',
-        editable: true,
-        ellipsis: true,
-      },
+      
       {
         title: '操作',
         dataIndex: 'operation',
@@ -246,23 +198,23 @@ class EditableTable extends React.Component {
                 {form => (
                   <a
                     onClick={() => this.save(form, record.key)}
-                    style={{ marginRight: 8 }}
+                    style={{ marginRight: 4 }}
                   >
-                    保存
+                    Save
                   </a>
                 )}
               </EditableContext.Consumer>
               <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
-                <a>取消</a>
+                <a>Cancel</a>
               </Popconfirm>
             </span>
-          ) : (
-              <Button disabled={editingKey !== ''} onClick={() => this.edit(record.key)}  onClick={() => this.setState({ isShow: true })}>
-                修改
-            </Button>
-            );
-        },
-        width:100,
+            ):(
+            <Button disabled={editingKey !== ''} onClick={() => this.edit(record.key)}
+            onClick={() => this.setState({ isShow: true })} >
+              修改
+            </Button>                  
+          );         
+        }
       },
       {
         key:2,
@@ -274,13 +226,10 @@ class EditableTable extends React.Component {
            <Button type="danger" onClick={()=>this.delete(text,record)}>删除</Button>
           </Popconfirm>
         ) : null,
-        width:100,
       },
-      
-
     ];
 
-
+    const {isShow} = this.state
     const columns = this.columns.map(col => {
       if (!col.editable) {
         return col;
@@ -299,20 +248,6 @@ class EditableTable extends React.Component {
 
     return (
       <div>
-        <div className={styles.data}>
-          <h2 className={styles.title}>商品分类</h2>
-          <div className={styles.act}>
-            <Link to='./newpro' className={styles.btn}><Button type='primary'> <Icon type="plus" />新建</Button></Link>
-            <Col span={8}>
-              <Search placeholder="搜索商品" className={styles.sear}
-                onSearch={
-                  value => console.log(value)
-                }
-                enterButton 
-              />
-            </Col>
-          </div>
-        </div>
       <EditableContext.Provider value={this.props.form}>
         <Table
           components={components}
@@ -321,22 +256,22 @@ class EditableTable extends React.Component {
           columns={columns}
           rowClassName="editable-row"
           pagination={{
-            pageSize: 7
+           pageSize:5
           }}
         />
       </EditableContext.Provider>
-      {/* <Modal
-          title="修改地址"
-          visible={isShow}
-          onOk={() => this.setState({ isShow: false })}
-          onCancel={() => this.setState({ isShow: false })}
-        >   
+       <Modal
+       title="修改地址"
+       visible={isShow}
+       onOk={() => this.setState({ isShow: false })}
+       onCancel={() => this.setState({ isShow: false })}
+     >   
 
-       <UserForm
-            setForm={form => this.form = form}
-          />
-       </Modal> */}
-      </div>
+    <UserForm
+         setForm={form => this.form = form}
+       />
+    </Modal>
+    </div>
     );
   }
 }
@@ -344,3 +279,25 @@ class EditableTable extends React.Component {
 const EditableFormTable = Form.create()(EditableTable);
 
 export default EditableFormTable
+
+
+
+// import React , {Component} from 'react';
+// export default class App extends Component{
+//     search=()=>{
+//         const inpVal = this.input.value;
+//         const inpVal1 = this.input1.value;
+//         console.log(inpVal,inpVal1);
+        
+//     }
+
+//     render(){
+//         return(
+//             <div>
+//                 <input type="text" ref={input => this.input = input} defaultValue="Hello"/>
+//                 <input type="text" ref={input => this.input1 = input} defaultValue="222"/>
+//                 <button onClick={this.search}>点击</button>
+//             </div>
+//         )
+//     }
+// }
