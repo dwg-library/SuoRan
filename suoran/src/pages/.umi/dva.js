@@ -20,7 +20,7 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'info', ...(require('D:/HTML5/suoran3/suoran/src/models/info.js').default) });
+  app.model({ namespace: 'info', ...(require('D:/HTML5/Pro/suoran/suoran/src/models/info.js').default) });
   return app;
 }
 
