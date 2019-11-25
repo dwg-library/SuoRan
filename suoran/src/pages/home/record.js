@@ -1,5 +1,5 @@
 import styles from './record.css'
-import { Table, Input, InputNumber, Popconfirm, Form, Button,Modal } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form,Button ,Modal} from 'antd';
 import * as api from '../utils/getpro';
 import UserForm from './new'
 
@@ -12,14 +12,13 @@ for (let i = 0; i < 1; i++) {
 const EditableContext = React.createContext();
 
 class EditableCell extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props)
-    this.state = {
-      dataSource: [],
-      isShow: false,
-
-    }
+     this.state = { 
+      dataSource:[],
+      isShow:false,
   }
+}
 
   getInput = () => {
     if (this.props.inputType === 'number') {
@@ -54,8 +53,8 @@ class EditableCell extends React.Component {
             })(this.getInput())}
           </Form.Item>
         ) : (
-            children
-          )}
+          children
+        )}
       </td>
     );
   };
@@ -65,26 +64,20 @@ class EditableCell extends React.Component {
   }
 }
 
-
-
 class EditableTable extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = { 
       data,
       editingKey: '',
       list: null,
-      isShow:false
-    };
-
+   };
+    
   }
-
 
   isEditing = record => record.key === this.state.editingKey;
 
-  cancel = (id) => {
-    console.log(id)
+  cancel = () => {
     this.setState({ editingKey: '' });
   };
 
@@ -110,7 +103,6 @@ class EditableTable extends React.Component {
   }
 
   edit(key) {
-    console.log(key)
     this.setState({ editingKey: key });
   }
 
@@ -122,37 +114,36 @@ class EditableTable extends React.Component {
   delete(text) {
     console.log(text)
     api.delpro(text._id,
-      localStorage.getItem("token"))
-      .then((data) => {
+        localStorage.getItem("token"))
+      .then((data)=>{
         console.log(data.data)
-      })
+      })     
   }
-
-  componentDidMount() {
-    api.getPro(
-      { per: 50, page: 1 },
+Order
+  componentDidMount(){
+    api.getOrder(
+      {per:30,page:5},
       localStorage.getItem("token"))
       .then((data) => {
-        // console.log(data.data.products)
-        var list = data.data.products
-        for (var i = 0; i < data.data.products.length; i++) {
-          list[i].key = i + 1
-          list[i].tou = data.data.products[i].coverImg;
-          list[i].nick = data.data.products[i].name;
-          list[i].age = data.data.products[i].descriptions;
-          list[i].name = data.data.products[i].price;
-          list[i].id = data.data.products[i]._id;
-        }
+        console.log(data.data.products)
+        // var list=data.data.products
+        // for(let i=0;i<data.data.products.length;i++){
+        //     list[i].key=i+1
+        //     list[i].tou=data.data.products[i].coverImg;
+        //     list[i].nick=data.data.products[i].name;
+        //     list[i].age=data.data.products[i].descriptions;
+        //     list[i].name=data.data.products[i].price;
+        //     list[i].id=data.data.products[i]._id;
+        // }
         // console.log(list)
-        this.setState({
-          list: list,
-        })
-      })
+        // this.setState({
+        //   list:list,        
+        // })     
+    })
   }
 
 
   render() {
-    const { users, isShow } = this.state
     const components = {
       body: {
         cell: EditableCell,
@@ -162,38 +153,39 @@ class EditableTable extends React.Component {
     this.columns = [
       {
         title: '图片',
-        dataIndex: 'tou',
+        dataIndex: 'tou',      
         editable: true,
-        render: img => <img src={img} className={styles.img} />,
+        render: img => <img src={img} className={styles.img}/>,
         width: '10%',
       },
       {
         title: '名称',
         dataIndex: 'nick',
-        render: text => <a>{text}</a>,
-        width: '15%',
+        render: text => <span className={styles.desc}>{text}</span>,
+        width: '30%',
         editable: true,
       },
       {
         title: '价格',
         dataIndex: 'name',
-        render: text => <a>{'￥' + text}</a>,
-        width: '8%',
+        render: text => <a>{'￥'+text}</a>,
+        width: '10%',
         editable: true,
       },
       {
         title: '描述',
         dataIndex: 'age',
-        width: '30%',
+        width: '25%',
         editable: true,
+        render: text => <p className={styles.desc}>{text}</p>,
       },
       {
         title: 'ID',
         dataIndex: 'id',
-        width: '25%',
+        width: '15%',
         editable: true,
       },
-
+      
       {
         title: '操作',
         dataIndex: 'operation',
@@ -201,13 +193,12 @@ class EditableTable extends React.Component {
           const { editingKey } = this.state;
           const editable = this.isEditing(record);
           return editable ? (
-
             <span>
               <EditableContext.Consumer>
                 {form => (
                   <a
                     onClick={() => this.save(form, record.key)}
-                    style={{ marginRight: 8 }}
+                    style={{ marginRight: 4 }}
                   >
                     Save
                   </a>
@@ -217,15 +208,15 @@ class EditableTable extends React.Component {
                 <a>Cancel</a>
               </Popconfirm>
             </span>
-          ) : (
-              <Button disabled={editingKey !== ''} onClick={() => this.edit(record.key)}  onClick={() => this.setState({ isShow: true })}>
-                修改
-            </Button>
-            );
-
+            ):(
+            <Button disabled={editingKey !== ''} onClick={() => this.edit(record.key)}
+            onClick={() => this.setState({ isShow: true })} >
+              修改
+            </Button>                  
+          );         
         }
       },
-     {
+      {
         key:2,
         width: '5%',
         editable: true,
@@ -238,7 +229,7 @@ class EditableTable extends React.Component {
       },
     ];
 
-
+    const {isShow} = this.state
     const columns = this.columns.map(col => {
       if (!col.editable) {
         return col;
@@ -256,7 +247,6 @@ class EditableTable extends React.Component {
     });
 
     return (
-
       <div>
       <EditableContext.Provider value={this.props.form}>
         <Table
@@ -266,22 +256,22 @@ class EditableTable extends React.Component {
           columns={columns}
           rowClassName="editable-row"
           pagination={{
-            pageSize: 4
+           pageSize:5
           }}
         />
       </EditableContext.Provider>
-      <Modal
-          title="修改地址"
-          visible={isShow}
-          onOk={this.addorUpdateUser}
-          onCancel={() => this.setState({ isShow: false })}
-        >   
+       <Modal
+       title="修改地址"
+       visible={isShow}
+       onOk={() => this.setState({ isShow: false })}
+       onCancel={() => this.setState({ isShow: false })}
+     >   
 
-       <UserForm
-            setForm={form => this.form = form}
-          />
-       </Modal>
-      </div>
+    <UserForm
+         setForm={form => this.form = form}
+       />
+    </Modal>
+    </div>
     );
   }
 }
@@ -289,3 +279,25 @@ class EditableTable extends React.Component {
 const EditableFormTable = Form.create()(EditableTable);
 
 export default EditableFormTable
+
+
+
+// import React , {Component} from 'react';
+// export default class App extends Component{
+//     search=()=>{
+//         const inpVal = this.input.value;
+//         const inpVal1 = this.input1.value;
+//         console.log(inpVal,inpVal1);
+        
+//     }
+
+//     render(){
+//         return(
+//             <div>
+//                 <input type="text" ref={input => this.input = input} defaultValue="Hello"/>
+//                 <input type="text" ref={input => this.input1 = input} defaultValue="222"/>
+//                 <button onClick={this.search}>点击</button>
+//             </div>
+//         )
+//     }
+// }

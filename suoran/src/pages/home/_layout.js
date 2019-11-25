@@ -1,6 +1,6 @@
-// import 'antd/dist/antd.css';
-import styles from '../home.css';
-import { Menu, Icon, Button,Avatar, Layout, Input, Col,} from 'antd';
+import 'antd/dist/antd.css';
+import styles from './home.css';
+import { Menu, Icon, Button,Avatar, Layout, Input,Modal,Form} from 'antd';
 import {connect} from 'dva'
 import Link from 'umi/link'
 
@@ -32,14 +32,28 @@ class App extends React.Component {
   };
 
 
+
+  logout=()=>{
+
+    Modal.confirm({
+      title: '确认退出吗?',
+      onOk:()=>{
+        // console.log('OK');
+        this.props.history.replace('/')
+
+      }
+    });
+  }
+
+
   render() {
     return (
       <div>
-        <div className={styles.nav}>
-            <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+        <h2>所然后台管理系统<a>首页</a></h2>
+            <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" className={styles.menu}>
               <Menu.Item key="mail">
                 {/* <Icon type="rollback" /> */}
-                <Link to='../home'>返回首页</Link>
+                <Link to='../home/home'>返回首页</Link>
               </Menu.Item>
               <Menu.Item key="mail1">
                 <Icon type="bell" />
@@ -57,9 +71,8 @@ class App extends React.Component {
                   <Menu.Item key="setting:1">修改密码</Menu.Item>
                 </Menu.ItemGroup>
               </SubMenu>
-              <Menu.Item key="alipay">
-                
-                <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
+              <Menu.Item  >
+                <a  onClick={this.logout}>
                 <Icon type="logout" />
                   退出登录
                 </a>
@@ -68,8 +81,7 @@ class App extends React.Component {
                 <Icon type="question-circle" />
                 帮助中心
               </Menu.Item>
-            </Menu>
-          </div>
+            </Menu> 
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className={styles.logo} >
@@ -92,12 +104,10 @@ class App extends React.Component {
                 </span>
               }info
             >
-              <Menu.Item key="1">
-                <Link to='./info'>用户信息</Link>                
-              </Menu.Item>
-              <Menu.Item key="2">收货地址</Menu.Item>
-              <Menu.Item key="3"><Link to='./feedback'>用户反馈</Link></Menu.Item>
-              <Menu.Item key="4">消费记录</Menu.Item>
+              <Menu.Item key="1"><Link to='./info'><Icon type="user" />用户信息</Link></Menu.Item>
+              <Menu.Item key="2"><Link to='./address'><Icon type="shop" />收货地址</Link></Menu.Item>
+              <Menu.Item key="3"><Link to='./feedback'><Icon type="form" />用户反馈</Link></Menu.Item>
+              <Menu.Item key="4"><Link to='./record'><Icon type="diff" />消费记录</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -108,8 +118,9 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="5"><Link to='./prolist'>商品列表</Link></Menu.Item>
-              <Menu.Item key="6"><Link to='./classify'>商品分类</Link></Menu.Item>
+              <Menu.Item key="5"><Icon type="bars" />商品列表</Menu.Item>
+              <Menu.Item key="6"><Icon type="file-ppt" />商品详情</Menu.Item>
+              <Menu.Item key="7"><Icon type="gold" />商品分类</Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub3"
@@ -120,8 +131,8 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="7"><Link to='./orders'>订单列表</Link></Menu.Item>
-              <Menu.Item key="8"><Link to='./O-details'>订单详情</Link></Menu.Item>
+              <Menu.Item key="8"><Icon type="block" />订单列表</Menu.Item>
+              <Menu.Item key="9"><Icon type="schedule" />订单详情</Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"
@@ -132,10 +143,10 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="9">数据报表</Menu.Item>
-              <Menu.Item key="10">安全管理</Menu.Item>
+              <Menu.Item key="10"><Icon type="line-chart" />数据报表</Menu.Item>
+              <Menu.Item key="11"><Icon type="safety-certificate" />安全管理</Menu.Item>
               <SubMenu key="sub5" title="其它">
-                <Menu.Item key="11">其它</Menu.Item>
+                <Menu.Item key="12"><Icon type="notification" />其它</Menu.Item>
               </SubMenu>
             </SubMenu>
           </Menu>
@@ -158,13 +169,12 @@ class App extends React.Component {
         </Layout>
         </Layout>
 
-      </div>
-
+     </div>
     );
   }
 }
 
-const WrappedNormal = (App);
+const WrappedNormal = Form.create() (App);
 
 export default WrappedNormal  
 // export default connect(state=>state.info)(App)

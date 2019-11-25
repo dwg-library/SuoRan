@@ -9,14 +9,19 @@ const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
-    path: '/home',
-    exact: true,
-    component: require('../home.js').default,
-  },
-  {
     path: '/',
     exact: true,
     component: require('../index.js').default,
+  },
+  {
+    path: '/utils/getpro',
+    exact: true,
+    component: require('../utils/getpro.js').default,
+  },
+  {
+    path: '/utils',
+    exact: true,
+    component: require('../utils/index.js').default,
   },
   {
     path: '/home',
@@ -24,14 +29,19 @@ const routes = [
     component: require('../home/_layout.js').default,
     routes: [
       {
-        path: '/home/classify',
+        path: '/home/address',
         exact: true,
-        component: require('../home/classify.js').default,
+        component: require('../home/address.js').default,
       },
       {
         path: '/home/feedback',
         exact: true,
         component: require('../home/feedback.js').default,
+      },
+      {
+        path: '/home/home',
+        exact: true,
+        component: require('../home/home.js').default,
       },
       {
         path: '/home/info',
@@ -44,29 +54,14 @@ const routes = [
         component: require('../home/new.js').default,
       },
       {
-        path: '/home/newpro',
+        path: '/home/record',
         exact: true,
-        component: require('../home/newpro.js').default,
-      },
-      {
-        path: '/home/O-details',
-        exact: true,
-        component: require('../home/O-details.js').default,
-      },
-      {
-        path: '/home/orders',
-        exact: true,
-        component: require('../home/orders.js').default,
-      },
-      {
-        path: '/home/prolist',
-        exact: true,
-        component: require('../home/prolist.js').default,
+        component: require('../home/record.js').default,
       },
       {
         component: () =>
           React.createElement(
-            require('C:/Users/L/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('C:/Users/ccc-j/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: false },
           ),
@@ -76,7 +71,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('C:/Users/L/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('C:/Users/ccc-j/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: false },
       ),

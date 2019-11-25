@@ -1,8 +1,8 @@
 import styles from './index.css';
 import 'antd/dist/antd.css';
-import * as api from '../utils/getpro';
+import * as api from './utils/getpro';
 import {connect} from 'dva'
-import { Form, Icon, Input, Button, Checkbox, Divider } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 
 
 
@@ -37,12 +37,18 @@ class NormalLoginForm extends React.Component {
     })
     .then((data)=>{
       console.log(data.data)
+      // _this.props.dispatch({
+      //   type:'info/change',
+      //   payload:{
+      //     token:data.data.token
+      //   }
+      // })
       localStorage.setItem('token',data.data.token)
       if(data.data.code=='success'){
-        alert('登录成功') 
-         window.location.href='./home'     
+          message.success('登录成功');
+         window.location.href='./home/home'     
       }else{
-        alert('用户名或密码错误' )
+        message.success('用户名或密码错误' )
       }
     })
    },1000)
@@ -78,7 +84,7 @@ class NormalLoginForm extends React.Component {
             rules: [
               {
                 required: true,
-                message: 'Please input your password!',
+                message: '请输入密码!',
               },
               {
                 validator: this.validateToNextPassword,
@@ -100,6 +106,7 @@ class NormalLoginForm extends React.Component {
             >
               登录
           </Button>
+          {/* </Link> */}
           </Form.Item>
         </Form>
       </div>
@@ -107,7 +114,7 @@ class NormalLoginForm extends React.Component {
     );
   }
 }
-// }
+
 
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
 // export default WrappedNormalLoginForm
