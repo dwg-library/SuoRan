@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from 'C:/Users/ccc-j/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/findRoute.js';
+} from 'C:/Users/L/AppData/Roaming/npm/node_modules/umi/node_modules/umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
@@ -22,9 +22,7 @@ plugins.init({
     'dva',
   ],
 });
-plugins.use(
-  require('../../../../../../../../../node_modules/umi-plugin-dva/lib/runtime'),
-);
+plugins.use(require('../../../node_modules/umi-plugin-dva/lib/runtime'));
 
 const app = require('@tmp/dva')._onCreate();
 window.g_app = app;
