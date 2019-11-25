@@ -1,18 +1,28 @@
+
+.normal {
+  background: #F28579;
+}
+
+
+.editable-row .ant-form-explain {
+  position: absolute;
+  font-size: 12px;
+  margin-top: -4px;
+}
+
 .img{
   width: 60px;
   height: 60px;
 }
 .data{
-  height: 50px;
+  height: 64px;
   width: 100%;
   border-bottom: 1px solid #dedede;
   position: relative;
-}
-.title{
-  float: left;
+  line-height: 65px;
 }
 .act{
-  height: 50px;
+  height: 65px;
   position: absolute;
   right:0;
 }
@@ -26,4 +36,10 @@
   width: 200px;
   position: absolute;
   right: 100px;
+  top: 16px;
+}
+
+.title{
+position: absolute;
+left: 0;
 }

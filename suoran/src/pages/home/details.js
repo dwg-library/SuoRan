@@ -1,5 +1,5 @@
 import { Col, Input} from 'antd';
-import styles from './O-details.css'
+import styles from './details.css'
 const { Search } = Input;
 
 class App extends React.Component {

@@ -39,6 +39,11 @@ const routes = [
         component: require('../home/classify.js').default,
       },
       {
+        path: '/home/details',
+        exact: true,
+        component: require('../home/details.js').default,
+      },
+      {
         path: '/home/feedback',
         exact: true,
         component: require('../home/feedback.js').default,
@@ -57,16 +62,6 @@ const routes = [
         path: '/home/new',
         exact: true,
         component: require('../home/new.js').default,
-      },
-      {
-        path: '/home/newpro',
-        exact: true,
-        component: require('../home/newpro.js').default,
-      },
-      {
-        path: '/home/O-details',
-        exact: true,
-        component: require('../home/O-details.js').default,
       },
       {
         path: '/home/orders',
