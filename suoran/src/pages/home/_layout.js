@@ -116,9 +116,8 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="5"><Icon type="bars" />商品列表</Menu.Item>
-              <Menu.Item key="6"><Icon type="file-ppt" />商品详情</Menu.Item>
-              <Menu.Item key="7"><Icon type="gold" />商品分类</Menu.Item>
+              <Menu.Item key="5"><Link to='./prolist'><Icon type="bars" />商品列表</Link></Menu.Item>
+              <Menu.Item key="6"><Link to='./classify'><Icon type="gold" />商品分类</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub3"
@@ -129,8 +128,8 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="8"><Icon type="block" />订单列表</Menu.Item>
-              <Menu.Item key="9"><Icon type="schedule" />订单详情</Menu.Item>
+              <Menu.Item key="7"><Link to='./orders'><Icon type="block" />订单列表</Link></Menu.Item>
+              <Menu.Item key="8"><Link to='./O-details'><Icon type="schedule" />订单详情</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"
@@ -141,10 +140,10 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="10"><Link to='./charts'><Icon type="line-chart" />数据报表</Link></Menu.Item>
-              <Menu.Item key="11"><Icon type="safety-certificate" />安全管理</Menu.Item>
+              <Menu.Item key="9"><Link to='./charts'><Icon type="line-chart" />数据报表</Link></Menu.Item>
+              <Menu.Item key="10"><Icon type="safety-certificate" />安全管理</Menu.Item>
               <SubMenu key="sub5" title="其它">
-                <Menu.Item key="12"><Icon type="notification" />其它</Menu.Item>
+                <Menu.Item key="11"><Icon type="notification" />其它</Menu.Item>
               </SubMenu>
             </SubMenu>
           </Menu>

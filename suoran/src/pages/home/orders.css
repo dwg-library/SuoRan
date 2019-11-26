@@ -1,18 +1,13 @@
-.img{
-    width: 60px;
-    height: 60px;
-}
+
 .data{
-    height: 50px;
+    height: 64px;
     width: 100%;
     border-bottom: 1px solid #dedede;
     position: relative;
+    line-height: 65px;
   }
-.title{
-    float: left;
-}
 .act{
-    height: 50px;
+    height: 65px;
     position: absolute;
     right:0;
 }
@@ -20,5 +15,11 @@
 .sear{
     width: 200px;
     position: absolute;
-    right: 100px;
+    right: 0px;
+    top: 16px;
+}
+
+.title{
+  position: absolute;
+  left: 0;
 }

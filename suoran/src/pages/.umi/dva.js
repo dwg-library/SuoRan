@@ -20,7 +20,7 @@ export function _onCreate() {
     app.use(plugin);
   });
   
-  app.model({ namespace: 'info', ...(require('C:/Users/ccc-j/Desktop/suoran/src/models/info.js').default) });
+  app.model({ namespace: 'info', ...(require('C:/Users/ccc-j/Desktop/青葱时代/suoran/suoran/src/models/info.js').default) });
   return app;
 }
 

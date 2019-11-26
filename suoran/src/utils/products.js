@@ -1,21 +1,19 @@
 import * as API from './index';
 
-export const getList=(token,params)=>{
-    return API.GETHEAD('/api/v1/admin/products',token,params)
+// 获取商品
+export const getList=(params,token)=>{
+    return API.GETHEAD('/api/v1/admin/products',params,token)
 }
 
-// export const addList=(token,params)=>{
-//     return API.POSTHPRO('/api/v1/admin/products',token,params)
-// }
- 
-// export const revise=(token,params)=>{
-//     return API.XIUGAI('/api/v1/admin/products/:id',token,params)
-// }
-
-// export const del=(token,params)=>{
-//     return API.DELETE('/api/v1/admin/products/:id',token,params)
-// }
-
-// export const See=(params)=>{
-//     return API.GET('/api/v1/admin/products/:id',params)
-// }
+// 删除商品
+export const del=(id,token)=>{
+    return API.ACCDELETE('/api/v1/admin/products/'+id,token)
+}
+// 添加商品
+export const getAdd=(params,token)=>{
+    return API.ADD('/api/v1/admin/products/'+params,token)
+}
+// 查询商品
+export const getpro=(id,token)=>{
+    return API.GETHEAD('/api/v1/admin/products/'+id,token)
+}
