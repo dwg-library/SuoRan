@@ -103,7 +103,8 @@ class App extends React.Component {
     this.setState({ list: newData });
   };
 
-  delete(text) {
+  delete(text,record) {
+    console.log(text,record)
     api.delacc(text._id,
       localStorage.getItem("token"))
       .then((data) => {
@@ -206,7 +207,7 @@ normFile = e => {
 
   componentDidMount() {
     api.getInfo(
-      { per: 100, page: 1 },
+      { per: 50, page: 3 },
       localStorage.getItem("token"))
       .then((data) => {
         console.log(data.data.users)
