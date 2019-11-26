@@ -34,6 +34,11 @@ const routes = [
         component: require('../home/address.js').default,
       },
       {
+        path: '/home/charts',
+        exact: true,
+        component: require('../home/charts.js').default,
+      },
+      {
         path: '/home/classify',
         exact: true,
         component: require('../home/classify.js').default,
@@ -77,6 +82,11 @@ const routes = [
         path: '/home/record',
         exact: true,
         component: require('../home/record.js').default,
+      },
+      {
+        path: '/home/security',
+        exact: true,
+        component: require('../home/security.js').default,
       },
       {
         component: () =>

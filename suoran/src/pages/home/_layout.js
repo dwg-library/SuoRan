@@ -49,16 +49,16 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2>所然后台管理系统<a>首页</a></h2>
+        <h2>欢迎使用<a>所然后台管理系统</a></h2>
             <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" className={styles.menu}>
               <Menu.Item key="mail">
                 {/* <Icon type="rollback" /> */}
                 <Link to='../home/home'>返回首页</Link>
               </Menu.Item>
-              <Menu.Item key="mail1">
+              {/* <Menu.Item key="mail1">
                 <Icon type="bell" />
                 系统通知
-              </Menu.Item>              
+              </Menu.Item>               */}
               <SubMenu
                 title={
                   <span className="submenu-title-wrapper">
@@ -71,16 +71,17 @@ class App extends React.Component {
                   <Menu.Item key="setting:1">修改密码</Menu.Item>
                 </Menu.ItemGroup>
               </SubMenu>
+              <Menu.Item key="mail2">
+               
+                欢迎您admin001
+              </Menu.Item>
               <Menu.Item  >
                 <a  onClick={this.logout}>
                 <Icon type="logout" />
                   退出登录
                 </a>
               </Menu.Item>
-              <Menu.Item key="mail2">
-                <Icon type="question-circle" />
-                帮助中心
-              </Menu.Item>
+              
             </Menu> 
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -98,10 +99,7 @@ class App extends React.Component {
             <SubMenu
               key="sub1"
               title={
-                <span>
-                  <Icon type="user" />
-                  <span>用户管理</span>
-                </span>
+                <span><Icon type="user" /><span>用户管理</span> </span>
               }info
             >
               <Menu.Item key="1"><Link to='./info'><Icon type="user" />用户信息</Link></Menu.Item>
@@ -131,7 +129,7 @@ class App extends React.Component {
               }
             >
               <Menu.Item key="7"><Link to='./orders'><Icon type="block" />订单列表</Link></Menu.Item>
-              <Menu.Item key="8"><Link to='./O-details'><Icon type="schedule" />订单详情</Link></Menu.Item>
+              <Menu.Item key="8"><Link to='./details'><Icon type="schedule" />订单详情</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"
@@ -142,7 +140,7 @@ class App extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="9"><Icon type="line-chart" />数据报表</Menu.Item>
+              <Menu.Item key="9"><Link to='./charts'><Icon type="line-chart" />数据报表</Link></Menu.Item>
               <Menu.Item key="10"><Icon type="safety-certificate" />安全管理</Menu.Item>
               <SubMenu key="sub5" title="其它">
                 <Menu.Item key="11"><Icon type="notification" />其它</Menu.Item>

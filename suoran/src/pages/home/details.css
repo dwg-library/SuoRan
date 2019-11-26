@@ -1,29 +1,48 @@
-.img{
-    width: 60px;
-    height: 60px;
-}
-.data{
-    height: 50px;
-    width: 100%;
-    border-bottom: 1px solid #dedede;
-    position: relative;
-  }
-.title{
-    float: left;
-}
-.act{
-    height: 50px;
-    position: absolute;
-    right:0;
+
+.normal {
+  background: #F28579;
 }
 
+
+.editable-row .ant-form-explain {
+  position: absolute;
+  font-size: 12px;
+  margin-top: -4px;
+}
+
+.img{
+  width: 60px;
+  height: 60px;
+}
+.data{
+  height: 64px;
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+  position: relative;
+  line-height: 65px;
+}
 .btn{
-    position: absolute;
-    right:0;
+  position: absolute;
+  right:0;
+  top:16px
+}
+
+.search{
+width: 218px;
+position: absolute;
+right: 100px;
+top:16px
 }
 
 .sear{
-    width: 200px;
-    position: absolute;
-    right: 100px;
+  height: 32px;
+  float: left;    
+}
+.btn1{
+float: right;
+}
+
+.title{
+position: absolute;
+left: 0;
 }
