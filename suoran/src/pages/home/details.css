@@ -1,25 +1,48 @@
 
+.normal {
+  background: #F28579;
+}
+
+
+.editable-row .ant-form-explain {
+  position: absolute;
+  font-size: 12px;
+  margin-top: -4px;
+}
+
+.img{
+  width: 60px;
+  height: 60px;
+}
 .data{
-    height: 64px;
-    width: 100%;
-    border-bottom: 1px solid #dedede;
-    position: relative;
-    line-height: 65px;
-  }
-.act{
-    height: 65px;
-    position: absolute;
-    right:0;
+  height: 64px;
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+  position: relative;
+  line-height: 65px;
+}
+.btn{
+  position: absolute;
+  right:0;
+  top:16px
+}
+
+.search{
+width: 218px;
+position: absolute;
+right: 100px;
+top:16px
 }
 
 .sear{
-    width: 200px;
-    position: absolute;
-    right: 0px;
-    top: 16px;
+  height: 32px;
+  float: left;    
+}
+.btn1{
+float: right;
 }
 
 .title{
-  position: absolute;
-  left: 0;
+position: absolute;
+left: 0;
 }
