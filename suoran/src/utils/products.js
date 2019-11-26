@@ -15,5 +15,5 @@ export const getAdd=(params,token)=>{
 }
 // 查询商品
 export const getpro=(id,token)=>{
-    return API.GETHEAD('/api/v1/admin/products/'+id,token)
+    return API.SEARCH('/api/v1/admin/products/'+id,token)
 }

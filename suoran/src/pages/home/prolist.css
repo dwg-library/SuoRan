@@ -33,11 +33,19 @@
     top:16px
 }
 
+.search{
+  width: 218px;
+  position: absolute;
+  right: 100px;
+  top:16px
+}
+
 .sear{
-    width: 240px;
-    position: absolute;
-    right: 100px;
-    top:16px
+    height: 32px;
+    float: left;    
+}
+.btn1{
+  float: right;
 }
 
 .title{

@@ -1,5 +1,4 @@
 
-import Link from 'umi/link';
 import styles from './prolist.css'
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Icon, Col, } from 'antd';
 import * as api from '../../utils/products';
@@ -138,6 +137,7 @@ class EditableTable extends React.Component {
         this.setState({
           list: list,
         })
+        console.log(this.state.list)
       })
 
   }
@@ -189,6 +189,17 @@ class EditableTable extends React.Component {
     });
   }
 
+  search(){
+    let id = this.refs.txt.value;
+    // console.log(id)
+    api.getpro(
+      id,
+      localStorage.getItem("token")
+    ).then((data)=>{
+      console.log(data.data)
+    })
+  }
+
   render() {
     const { users, isShow } = this.state
     const components = {
@@ -198,6 +209,12 @@ class EditableTable extends React.Component {
     };
 
     this.columns = [
+      {
+        title: '商品ID',
+        dataIndex: 'id',
+        editable: true,
+        ellipsis: true
+      },
       {
         title: '商品图片',
         dataIndex: 'img',
@@ -301,39 +318,24 @@ class EditableTable extends React.Component {
           <h2 className={styles.title}>商品列表</h2>
           <div className={styles.act}>
             <Button type='primary' className={styles.btn}> <Icon type="plus" />新建</Button>
-            <Col span={8}>
-              <Search placeholder="搜索商品" className={styles.sear}
-                onSearch={
-                  value => console.log(value)
-                }
-                enterButton 
-              />
-            </Col>
+            <div className={styles.search}>
+              <input type="text" placeholder="搜索商品" className={styles.sear} ref="txt"/>
+              <Button type='primary' className={styles.btn1} onClick={()=>this.search()}>搜索</Button>
+            </div>
           </div>
         </div>
-      <EditableContext.Provider value={this.props.form}>
-        <Table
-          components={components}
-          bordered
-          dataSource={this.state.list}
-          columns={columns}
-          rowClassName="editable-row"
-          pagination={{
-            pageSize: 7
-          }}
-        />
-      </EditableContext.Provider>
-      {/* <Modal
-          title="修改地址"
-          visible={isShow}
-          onOk={() => this.setState({ isShow: false })}
-          onCancel={() => this.setState({ isShow: false })}
-        >   
-
-       <UserForm
-            setForm={form => this.form = form}
+        <EditableContext.Provider value={this.props.form}>
+          <Table
+            components={components}
+            bordered
+            dataSource={this.state.list}
+            columns={columns}
+            rowClassName="editable-row"
+            pagination={{
+              pageSize: 7
+            }}
           />
-       </Modal> */}
+        </EditableContext.Provider>
       </div>
     );
   }

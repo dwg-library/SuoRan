@@ -129,7 +129,7 @@ class App extends React.Component {
               }
             >
               <Menu.Item key="7"><Link to='./orders'><Icon type="block" />订单列表</Link></Menu.Item>
-              <Menu.Item key="8"><Link to='./O-details'><Icon type="schedule" />订单详情</Link></Menu.Item>
+              <Menu.Item key="8"><Link to='./details'><Icon type="schedule" />订单详情</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub4"

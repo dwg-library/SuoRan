@@ -11,13 +11,22 @@ class App extends React.Component {
 
   componentDidMount(){
     api.getList(
-      {per:50},
+      {per:50,page:6},
       localStorage.getItem("token"),
       )
       .then((data) => {
         // console.log(data)
         // console.log(data.data.orders)
         var list=data.data.orders
+        for (var i = 0; i < data.data.orders.length; i++) {
+          list[i].key = i + 1
+          list[i].img = data.data.orders[i].coverImg;
+          list[i].name = data.data.orders[i].name;
+          list[i].desc = data.data.orders[i].descriptions;
+          list[i].price = data.data.orders[i].price;
+          list[i].num = data.data.orders[i].quantity;
+          list[i].id = data.data.orders[i]._id;
+        }
         // console.log(list)
         this.setState({
           list:list,
@@ -28,19 +37,22 @@ class App extends React.Component {
   render() {
     const columns = [
       {
-        title: '用户',
+        title: 'ID',
         dataIndex: 'id',
         ellipsis: true,
+        width:220,
+      },
+      {
+        title: '用户',
+        dataIndex: 'name',
+        ellipsis: true,
+        width:80,
       },
       {
         title: '订单号',
         dataIndex: 'orderID',
         ellipsis: true,
-      },
-      {
-        title: '订单价格',
-        dataIndex: 'price',
-        ellipsis: true,
+        width:160,
       },
       {
         title: '收货地址',
@@ -63,7 +75,8 @@ class App extends React.Component {
     for (let i = 0; i < this.state.list.length; i++) {
       data.push({
         key: i,
-        id: this.state.list[i].receiver,
+        id:this.state.list[i].id,
+        name: this.state.list[i].receiver,
         orderID: this.state.list[i].no,
         price:this.state.list[i].price,
         address:this.state.list[i].regions + this.state.list[i].address,
