@@ -102,7 +102,7 @@ class App extends React.Component {
                 <span><Icon type="user" /><span>用户管理</span> </span>
               }info
             >
-              <Menu.Item key="1"><Link to='./info'><Icon type="user" />用户信息</Link></Menu.Item>
+              <Menu.Item key="1"><Link to='./info'><Icon type="user" />用户列表</Link></Menu.Item>
               <Menu.Item key="2"><Link to='./address'><Icon type="shop" />收货地址</Link></Menu.Item>
               <Menu.Item key="3"><Link to='./feedback'><Icon type="form" />用户反馈</Link></Menu.Item>
               <Menu.Item key="4"><Link to='./record'><Icon type="diff" />消费记录</Link></Menu.Item>

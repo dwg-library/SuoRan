@@ -55,7 +55,7 @@ class App extends React.Component {
         width:160,
       },
       {
-        title: '收获地址',
+        title: '收货地址',
         dataIndex: 'address',
         ellipsis: true,
       },
