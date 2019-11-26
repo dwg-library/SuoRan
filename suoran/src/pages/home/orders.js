@@ -11,7 +11,7 @@ class App extends React.Component {
 
   componentDidMount(){
     api.getList(
-      {per:50},
+      {per:50,page:6},
       localStorage.getItem("token"),
       )
       .then((data) => {
