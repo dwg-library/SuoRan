@@ -123,7 +123,7 @@ class EditableTable extends React.Component {
       { per: 50,},
       localStorage.getItem("token"))
       .then((data) => {
-        // console.log(data.data.categories)
+        console.log(data.data.categories)
         var list = data.data.categories
         for (var i = 0; i < data.data.categories.length; i++) {
           list[i].key = i + 1
@@ -302,15 +302,11 @@ class EditableTable extends React.Component {
         <div className={styles.data}>
           <h2 className={styles.title}>商品分类</h2>
           <div className={styles.act}>
-            <Link to='./newpro' className={styles.btn}><Button type='primary'> <Icon type="plus" />新建</Button></Link>
-            <Col span={8}>
-              <Search placeholder="搜索商品" className={styles.sear}
-                onSearch={
-                  value => console.log(value)
-                }
-                enterButton 
-              />
-            </Col>
+            <Button type='primary' className={styles.btn}> <Icon type="plus" />新建</Button>
+            <div className={styles.search}>
+              <input type="text" placeholder="搜索商品" className={styles.sear} ref="txt"/>
+              <Button type='primary' className={styles.btn1} onClick={()=>this.search()}>搜索</Button>
+            </div>
           </div>
         </div>
       <EditableContext.Provider value={this.props.form}>
@@ -325,17 +321,6 @@ class EditableTable extends React.Component {
           }}
         />
       </EditableContext.Provider>
-      {/* <Modal
-          title="修改地址"
-          visible={isShow}
-          onOk={() => this.setState({ isShow: false })}
-          onCancel={() => this.setState({ isShow: false })}
-        >   
-
-       <UserForm
-            setForm={form => this.form = form}
-          />
-       </Modal> */}
       </div>
     );
   }
