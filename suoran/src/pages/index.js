@@ -75,7 +75,7 @@ class NormalLoginForm extends React.Component {
             })(
               <Input
                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.4)' }} />}
-                placeholder="Username"
+                placeholder="默认用户名:admin001"
               />,
             )}
           </Form.Item>
@@ -90,7 +90,7 @@ class NormalLoginForm extends React.Component {
                 validator: this.validateToNextPassword,
               },
             ],
-          })(<Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.4)' }} />} />)}
+          })(<Input.Password placeholder='默认密码:admin@12138' prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.4)' }} />} />)}
         </Form.Item>
           <Form.Item>
             {getFieldDecorator('remember', {

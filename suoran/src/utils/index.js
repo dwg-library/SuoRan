@@ -79,3 +79,11 @@ export const XIUGAI=(url,token)=>{
       })
   }
   
+ // 查询商品
+ export const SEARCH=(url,token)=>{
+  return axios({
+    method:'get',
+    url:`${baseUrl}${url}`,
+    headers:{authorization:'Bearer ' +token}
+  })
+}

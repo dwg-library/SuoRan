@@ -119,26 +119,26 @@ class EditableTable extends React.Component {
         console.log(data.data)
       })     
   }
-Order
+
   componentDidMount(){
-    api.getOrder(
-      {per:30,page:5},
+    api.getPro(
+      {per:50,page:8},
       localStorage.getItem("token"))
       .then((data) => {
         console.log(data.data.products)
-        // var list=data.data.products
-        // for(let i=0;i<data.data.products.length;i++){
-        //     list[i].key=i+1
-        //     list[i].tou=data.data.products[i].coverImg;
-        //     list[i].nick=data.data.products[i].name;
-        //     list[i].age=data.data.products[i].descriptions;
-        //     list[i].name=data.data.products[i].price;
-        //     list[i].id=data.data.products[i]._id;
-        // }
-        // console.log(list)
-        // this.setState({
-        //   list:list,        
-        // })     
+        var list=data.data.products
+        for(let i=0;i<data.data.products.length;i++){
+            list[i].key=i+1
+            list[i].tou=data.data.products[i].coverImg;
+            list[i].nick=data.data.products[i].name;
+            list[i].age=data.data.products[i].descriptions;
+            list[i].name=data.data.products[i].price;
+            list[i].id=data.data.products[i]._id;
+        }
+        console.log(list)
+        this.setState({
+          list:list,        
+        })     
     })
   }
 
@@ -256,7 +256,7 @@ Order
           columns={columns}
           rowClassName="editable-row"
           pagination={{
-           pageSize:5
+           pageSize:4
           }}
         />
       </EditableContext.Provider>
